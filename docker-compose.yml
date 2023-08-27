@@ -1,0 +1,46 @@
+version: '3.3'
+
+services:
+    db:
+        container_name: mysql
+        image: mysql:8.0.25
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        platform: linux/amd64
+        volumes:
+            - ./docker/mysql:/var/lib/mysql:Z
+        environment:
+            MYSQL_ROOT_PASSWORD: phpkonf
+            MYSQL_DATABASE: phpkonf
+        ports:
+            - "3366:3306"
+    server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: phpkonf_tcp_server
+        env_file:
+            - .env
+        volumes:
+            - ./:/usr/src/app
+        stdin_open: true # docker run -i
+        ports:
+            - "9066:9001"
+            - $SOCKET_PORT:$SOCKET_PORT
+            - "8080:8080"
+        restart: always
+        links:
+            - db
+            - redis
+        depends_on:
+            - db
+            - redis
+
+    redis:
+        image: redis
+        restart: always
+        ports:
+            - "6366:6379"
+        volumes:
+            - ./docker/redis/tmp:/tmp:Z
+
