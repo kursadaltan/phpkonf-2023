@@ -3,7 +3,7 @@
 // $ composer require react/http react/socket # install example using Composer
 // $ php example.php # run example on command line, requires no additional web server
 
-require __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
 
 $http = new React\Http\HttpServer(function (Psr\Http\Message\ServerRequestInterface $request) {
     return React\Http\Message\Response::json([

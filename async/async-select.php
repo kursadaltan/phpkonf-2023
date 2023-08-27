@@ -3,7 +3,7 @@
 use React\EventLoop\Loop;
 use React\MySQL\Factory;
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
 
 $loop = Loop::get();
 $factory = new Factory($loop);
@@ -15,10 +15,6 @@ $formatter = new \React\Stream\ThroughStream(function ($data) {
 
 $file = new \React\Stream\WritableResourceStream(fopen('data.txt', 'w'), $loop);
 
-$start = microtime(true);
-
 $connection->queryStream('SELECT * FROM raw_data')->pipe($formatter)->pipe($file);
-
-echo 'Time: ' . (microtime(true) - $start) . PHP_EOL;
 
 $connection->quit();

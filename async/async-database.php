@@ -4,7 +4,7 @@ use React\MySQL\Factory;
 use React\MySQL\QueryResult;
 use function React\Async\await;
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
 
 $loop = Loop::get();
 $factory = new Factory($loop);

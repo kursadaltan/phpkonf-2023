@@ -19,14 +19,11 @@ services:
             context: .
             dockerfile: Dockerfile
         container_name: phpkonf_tcp_server
-        env_file:
-            - .env
         volumes:
             - ./:/usr/src/app
         stdin_open: true # docker run -i
         ports:
             - "9066:9001"
-            - $SOCKET_PORT:$SOCKET_PORT
             - "8080:8080"
         restart: always
         links:

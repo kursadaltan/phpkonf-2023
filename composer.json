@@ -18,6 +18,7 @@
         "vlucas/phpdotenv": "^5.5",
         "react/mysql": "^0.6@dev",
         "react/async": "^4.1.0",
-        "react/http": "^1.9"
+        "react/http": "^1.9",
+        "react/filesystem": "^0.2@dev"
     }
 }

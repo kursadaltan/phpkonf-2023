@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
 
 $socket = new React\Socket\SocketServer('0.0.0.0:6666');
 $socket->on('connection', function (React\Socket\ConnectionInterface $connection) {

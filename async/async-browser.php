@@ -1,6 +1,7 @@
 <?php
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__ . '/../vendor/autoload.php';
+
 use Psr\Http\Message\ResponseInterface;
 use React\Http\Browser;
 
