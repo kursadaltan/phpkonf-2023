@@ -3,14 +3,14 @@
 include __DIR__ . '/../vendor/autoload.php';
 
 $socket = new React\Socket\SocketServer('0.0.0.0:6666');
-$server = new React\Socket\LimitingServer($socket, 1);
+$server = new React\Socket\LimitingServer($socket, 5);
 $socket->on('connection', function (React\Socket\ConnectionInterface $connection) {
     $connection->write("Merhaba " . $connection->getRemoteAddress() . "!\n");
     $connection->write("PHPKonf2023'e Hoşgeldiniz !\n");
 
     $connection->on('data', function ($data) use ($connection) {
         $data = trim(preg_replace('/[^\w\d \.\,\-\!\?]/u', '', $data));
-        
+
         if ($data == 'ACCESS') {
             $connection->write('TRUE' . PHP_EOL);
         } else {
